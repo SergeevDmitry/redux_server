@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO, EDIT_TODO, TOGGLE_TODO } from '../actions';
+import { GET_TODOS, ADD_TODO, DELETE_TODO, EDIT_TODO, TOGGLE_TODO } from '../actions';
 
 function todoReducer(state = {}, action) {
     switch (action.type) {
@@ -34,6 +34,9 @@ function todoReducer(state = {}, action) {
 
 export default function reducer(state = [], action) {
     switch (action.type) {
+      case GET_TODOS:
+        return action.todos;
+        
         case ADD_TODO:
             return [...state, todoReducer(undefined, action)];
 
@@ -60,7 +63,7 @@ export function getFilteredTodos(state, filter) {
     switch (filter) {
         case 'ALL':
             return state;
-        
+
         case 'COMPLETED':
             return state.filter(todo => todo.completed);
 
