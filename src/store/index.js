@@ -14,8 +14,20 @@ function addPromiseSupport(store) {
   }
 }
 
+function addThunkSupport(store) {
+  const dispatch = store.dispatch;
+
+  return action => {
+    if (typeof action === 'function') {
+      return action(dispatch);
+    }
+
+    return dispatch(action);
+  }
+}
+
 const store = createStore(reducer);
 
-store.dispatch = addPromiseSupport(store);
+store.dispatch = addThunkSupport(store);
 
 export default store;
