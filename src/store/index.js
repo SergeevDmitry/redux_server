@@ -16,8 +16,6 @@ function addPromiseSupport(store) {
 
 const store = createStore(reducer);
 
-
-
 store.dispatch = addPromiseSupport(store);
 
 export default store;
